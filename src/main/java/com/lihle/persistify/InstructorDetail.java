@@ -25,6 +25,9 @@ public class InstructorDetail {
     @Column(name="hobby")
     private String hobby;
 
+    //refers to the instructor , mapped by instructorDetail
+    @OneToOne(mappedBy = "instructorDetail")
+    private Instructor instructor;
 
     public InstructorDetail() {}
 
@@ -32,6 +35,15 @@ public class InstructorDetail {
         this.youtubeChannel = youtubeChannel;
         this.hobby = hobby;
     }
+
+    public Instructor getInstructor(){
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor){
+        this.instructor = instructor;
+    }
+
 
     public int getId() {
         return id;
