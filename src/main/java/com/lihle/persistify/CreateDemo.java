@@ -22,7 +22,7 @@ public class CreateDemo {
         try{
             //create the objects
             Instructor tempInstructor =
-                    new Instructor("Lihle", "Wallace", "smunqawallace.com");
+                    new Instructor("Mary", "Jane", "maryjane.com");
 
             InstructorDetail tempInstructorDetail =
                     new InstructorDetail("https://www.youtube.com", "Coding");

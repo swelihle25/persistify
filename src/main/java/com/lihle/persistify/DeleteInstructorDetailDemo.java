@@ -22,7 +22,7 @@ public class DeleteInstructorDetailDemo {
             session.beginTransaction();
 
             //get instructor detail object
-            int theId = 2;
+            int theId = 3;
             InstructorDetail tempInstructorDetail =
                     session.get(InstructorDetail.class, theId);
             System.out.println("tempInstructorDetail: " +
@@ -36,7 +36,10 @@ public class DeleteInstructorDetailDemo {
             System.out.println("Deleting tempInstructorDetail: " +
                     tempInstructorDetail);
 
-            session.delete(tempInstructorDetail);
+            //Remove associated object reference
+            tempInstructorDetail.getInstructor().setInstructorDetail(null);
+
+
 
             session.delete(tempInstructorDetail);
             //commit transaction
