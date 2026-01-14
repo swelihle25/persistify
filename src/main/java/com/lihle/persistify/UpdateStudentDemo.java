@@ -29,9 +29,7 @@ public class UpdateStudentDemo {
             System.out.println("\nGetting student with id: " + studentId);
 
             Student myStudent = session.get(Student.class, studentId);
-
-            System.out.println("Updating student : " + myStudent);
-            myStudent.setFirstName("Sponge");
+            session.delete(myStudent);
 
             //commit the transaction
             session.getTransaction().commit();
