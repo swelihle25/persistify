@@ -81,5 +81,4 @@ public class Instructor {
     public String toString() {
         return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
-
 }

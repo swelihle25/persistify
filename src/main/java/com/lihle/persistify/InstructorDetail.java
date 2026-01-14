@@ -26,7 +26,7 @@ public class InstructorDetail {
     private String hobby;
 
     //refers to the instructor , mapped by instructorDetail
-    @OneToOne(mappedBy = "instructorDetail")
+    @OneToOne(mappedBy = "instructorDetail" , cascade = CascadeType.ALL)
     private Instructor instructor;
 
     public InstructorDetail() {}
