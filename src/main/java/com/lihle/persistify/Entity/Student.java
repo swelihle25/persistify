@@ -1,27 +1,22 @@
 package com.lihle.persistify.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "student")
 public class Student {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Id
     @Column(name = "first_name")
     private String firstName;
 
-    @Id
     @Column(name = "last_name")
     private String lastName;
 
-    @Id
     @Column(name = "email")
     private String email;
 
