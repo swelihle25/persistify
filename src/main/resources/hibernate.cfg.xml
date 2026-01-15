@@ -25,6 +25,7 @@
 
         <!-- Register annotated classes -->
         <mapping class="com.lihle.persistify.Entity.Student"/>
+        <mapping class="com.lihle.persistify.Entity.Course"/>
 
     </session-factory>
 </hibernate-configuration>

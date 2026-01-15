@@ -1,6 +1,10 @@
 package com.lihle.persistify;
 
+import com.lihle.persistify.Entity.Course;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "instructor")
@@ -31,6 +35,11 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
+
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Course> courses = new ArrayList<>();
+
 
     public Instructor() {
     }
@@ -75,6 +84,21 @@ public class Instructor {
 
     public String getEmail() {
         return email;
+    }
+    public List<Course> getCourses() {
+            return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void addCourse(Course tempCourse){
+        if(courses == null){
+            courses = new ArrayList<>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
     }
 
     @Override
