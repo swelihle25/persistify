@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class GetInstructorCoursesDemo {
+public class DeleteCourseDemo {
     public static void main(String[] args) {
 
         //create session factory
@@ -24,13 +24,13 @@ public class GetInstructorCoursesDemo {
 
             session.beginTransaction();
 
-            //get the instructor from db
-            int theId = 3;
-            Instructor tempInstructor = session.get(Instructor.class, theId);
+            int theId = 1 ;
+            Course tempCourse = session.get(Course.class, theId);
+            System.out.println("Loaded course: " + tempCourse);
 
-            System.out.println("Instructor: " + tempInstructor);
+            session.delete(tempCourse);
 
-            System.out.println("Courses: " + tempInstructor.getCourses());
+
             //commit transaction
             session.getTransaction().commit();
 
