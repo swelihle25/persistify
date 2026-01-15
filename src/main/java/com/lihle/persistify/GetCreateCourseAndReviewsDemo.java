@@ -1,12 +1,13 @@
 package com.lihle.persistify;
 
 import com.lihle.persistify.Entity.Course;
+import com.lihle.persistify.Entity.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class DeleteCourseDemo {
+public class GetCreateCourseAndReviewsDemo {
     public static void main(String[] args) {
 
         //create session factory
@@ -14,27 +15,28 @@ public class DeleteCourseDemo {
                 .configure()
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Review.class)
+
                 .buildSessionFactory();
 
         //create session
         Session session = factory.getCurrentSession();
 
         try{
-            //create the objects
-
             session.beginTransaction();
 
-            int theId = 1 ;
+            int theId = 2;
             Course tempCourse = session.get(Course.class, theId);
-            System.out.println("Loaded course: " + tempCourse);
 
-            session.delete(tempCourse);
+            
+            System.out.println(tempCourse);
+            System.out.println(tempCourse.getReviews());
 
 
-            //commit transaction
             session.getTransaction().commit();
 
-            System.out.println(" Aaaanddd Done!");
+            System.out.println("Done!");
         }
         finally{
 

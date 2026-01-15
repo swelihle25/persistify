@@ -1,12 +1,13 @@
 package com.lihle.persistify;
 
 import com.lihle.persistify.Entity.Course;
+import com.lihle.persistify.Entity.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class GetInstructorCoursesDemo {
+public class CreateCourseAndReviewsDemo {
     public static void main(String[] args) {
 
         //create session factory
@@ -14,27 +15,37 @@ public class GetInstructorCoursesDemo {
                 .configure()
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Review.class)
+
                 .buildSessionFactory();
 
         //create session
         Session session = factory.getCurrentSession();
 
         try{
-            //create the objects
-
             session.beginTransaction();
 
-            //get the instructor from db
-            int theId = 3;
-            Instructor tempInstructor = session.get(Instructor.class, theId);
+            Course tempCourse = new Course("Rubik's Cube - How to Speed Cube");
 
-            System.out.println("Instructor: " + tempInstructor);
+            tempCourse.addReview(new Review("Great course... loved it!"));
+            tempCourse.addReview(new Review("Cool course, job well done!"));
+            tempCourse.addReview(new Review("What a dumb course, you are an idiot!"));
 
-            System.out.println("Courses: " + tempInstructor.getCourses());
-            //commit transaction
+
+            System.out.println("Saving the course...");
+            System.out.println(tempCourse);
+            System.out.println(tempCourse.getReviews());
+
+            session.save(tempCourse);
+
+
+
+
+
             session.getTransaction().commit();
 
-            System.out.println(" Aaaanddd Done!");
+            System.out.println("Done!");
         }
         finally{
 
